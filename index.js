@@ -1,6 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
-const fs = require('fs');
+
 const app = express();
 const port = 3000;
 
@@ -11,19 +11,27 @@ const recipeJSON =
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(js)
 
 app.get("/", (req, res) => {
   res.render("index.ejs");
 });
 
 app.post("/recipe", (req, res) => {
-  res.render
-  //Step 3: Write your code here to make this behave like the solution website.
-  //Step 4: Add code to views/index.ejs to use the recieved recipe object.
-  const fishTacos = res.bodyParser.choice;
+  switch (req.body.choice) {
+    case "chicken":
+      // Code to handle the "chicken" recipe choice.
+      break;
+    case "beef":
+      // Code to handle the "beef" recipe choice.
+      break;
+    case "fish":
+      // Code to handle the "fish" recipe choice.
+      break;
+    default:
+      // Code to handle the default case when the choice doesn't match any of the cases.
+      break;
+  }
 });
-
 app.listen(port, () => {
   console.log(`Server running on port: ${port}`);
 });
