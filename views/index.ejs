@@ -8,32 +8,41 @@
 
 <body>
   <h1>Taco Town 🌮</h1>
-  <form action="/recipe" method="POST" class="buttons">
+
+
+  <form action="/recipe" method="POST" class="buttons
+  ">
     <button type="submit" value="chicken" name="choice">🍗</button>
     <button type="submit" value="beef" name="choice">🥩</button>
     <button type="submit" value="fish" name="choice">🐟</button>
   </form>
+  <div id="recipeContainer" class="hidden">
+    <%if (locals.recipe) {%>
 
-  <% if (locals.recipe) { %>
-    <div id="recipeContainer">
-      <h2 id="recipeTitle"><%= locals.recipe.name %></h2>
+      <h2 id="recipeTitle">
+        <%= recipe.name %>
+      </h2>
 
       <h3>Ingredients:</h3>
       <ul id="ingredientsList">
-        <li><%= locals.recipe.Ingredients.protein.name %>, <%= locals.recipe.Ingredients.protein.preparation %></li>
-        <li><%= locals.recipe.Ingredients.salsa.name %></li>
         <li>
-          <% locals.recipe.Ingredients.toppings.forEach(function(topping) { %>
-            <%= topping.quantity %> of <%= topping.name %><br>
-          <% }); %>
+          <%= recipe.ingredients.protein.name %>, <%= recipe.ingredients.protein.preparation %>
         </li>
+        <li>
+          <%= recipe.ingredients.salsa.name %>
+
+        </li>
+        <% recipe.ingredients.toppings.forEach(topping=> { %>
+          <li>
+            <%= topping.quantity %> of <%= topping.name %>
+          </li>
+          <% }) %>
       </ul>
-    </div>
-  <% } else { %>
-    <div>
-      <h2>Pick Your Favorite Taco Ingredients</h2>
-    </div>
-  <% } %>
+
+      <%} else {%>
+        <h2>Pick your favourite taco ingredient 👆</h2>
+        <%}%>
+  </div>
 </body>
 
 </html>
